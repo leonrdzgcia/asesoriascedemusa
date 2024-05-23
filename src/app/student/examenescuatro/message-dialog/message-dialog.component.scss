@@ -1,0 +1,23 @@
+.example-button-row {
+    display: flex;
+    max-width: 300px;
+justify-content: flex-end;
+}
+
+
+.scrollable-content {
+    max-height: 200px;/* Altura máxima del contenedor */
+    overflow-y: auto;/* Añade una barra de desplazamiento cuando sea necesario */
+    color: black;
+    font-size: large;
+
+
+}
+
+.rojo {
+    color: red;
+  }
+
+  .verde {
+    color: greenyellow;
+  }

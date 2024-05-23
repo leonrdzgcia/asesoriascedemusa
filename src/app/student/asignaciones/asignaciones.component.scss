@@ -1,0 +1,42 @@
+table {
+    width: 100%;
+    margin-top: 100px;
+  }
+  
+  th {
+    width: 20%;
+  }
+  
+  ponter {
+    cursor: pointer;
+  }
+  
+  .spinner {
+    margin: 0 auto;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .column-form {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Otra opción: align-items: center; para centrar verticalmente */
+  }
+  
+  .example-button-row {
+    display: flex;
+  justify-content: space-evenly;    
+  }

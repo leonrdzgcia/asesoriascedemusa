@@ -1,0 +1,147 @@
+<div class="container" style="width: 160%; max-width: 1500px;">
+    <mat-toolbar><span>Usuarios</span></mat-toolbar>
+
+
+    <form class="column-form" [formGroup]="formularioUsuarios" (ngSubmit)="submitForm()">
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="idUsuario">idUsuario</mat-label>
+            <input matInput matInput type="text" formControlName="idUsuario" (keypress)="soloNumeros($event)">
+        </mat-form-field>
+
+
+        <!--mat-form-field class="flex-auto">
+            <mat-label for="matricula">Matricula</mat-label>
+            <input matInput matInput type="text" formControlName="matricula" (keypress)="soloNumeros($event)">
+        </mat-form-field-->
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="nombre">Nombre</mat-label>
+            <input matInput type="text" formControlName="nombre">
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="apellidopaterno">Ap Paterno</mat-label>
+            <input matInput type="text" formControlName="apellidopaterno">
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="apellidomaterno">Ap Materno</mat-label>
+            <input matInput type="text" formControlName="apellidomaterno">
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="email">Email</mat-label>
+            <input matInput type="text" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="celular">Celular</mat-label>
+            <input matInput type="text" formControlName="celular" (keypress)="soloNumeros($event)">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Nivel</mat-label>
+            <mat-select [(value)]="nivelSeleccionado">
+              <mat-option *ngFor="let opcion of opciones" [value]="opcion">{{ opcion }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!--mat-form-field>
+                    <mat-label>Nivel</mat-label>
+                    <mat-select [(ngModel)]="opcionSeleccionada">
+                      <mat-option *ngFor="let opcion of opciones"  formControlName="nivel">{{ opcion.nombre }}</mat-option>
+                    </mat-select>
+                </mat-form-field-->
+        <!--mat-form-field class="flex-auto">
+                    <mat-label for="fechabaja">Fecha baja</mat-label>
+                    <input matInput type="text"   formControlName="fechabaja">
+                </mat-form-field-->
+
+        <mat-form-field>
+            <mat-label>Fecha de baja</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="Seleccione una fecha" [(ngModel)]="fechaSeleccionada"
+                formControlName="fechabaja">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!--button (click)="clickAgregarUsuario()"  mat-raised-button color="primary" >Agregar</button>
+            <button (click)="clickEliminarUsuario()"  mat-raised-button color="primary" >Eliminar</button-->
+    </form>
+
+    <div class="example-button-row">
+        <button (click)="clickAgregarUsuario()" [disabled]="!formularioUsuarios.valid" mat-raised-button color="primary">Agregar usuario</button>
+        <button (click)="clickModificarUsuario()" mat-raised-button color="primary">Modificar usuario</button>
+        <button (click)="clickEliminarUsuario()" mat-raised-button color="primary">Eliminar usuario</button>
+        <button (click)="clickGenerarcontrasena()" mat-raised-button color="primary">Actualizar Contrasena</button>
+    </div>
+
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+        <!--ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef>{{ column | titlecase }}</th>
+            <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+        </ng-container-->
+
+        <ng-container matColumnDef="idUsuario">
+            <th mat-header-cell *matHeaderCellDef style="width: 5%;">ID</th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;">{{ element.idUsuario}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="matricula">
+            <th mat-header-cell *matHeaderCellDef style="width: 5%;">Matricula</th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;">{{ element.matricula}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef style="width: 20%;">Nombre</th>
+            <td mat-cell *matCellDef="let element" style="width: 20%;">{{ element.nombre }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="apellidopaterno">
+            <th mat-header-cell *matHeaderCellDef style="width: 15%;">Apellido Paterno</th>
+            <td mat-cell *matCellDef="let element" style="width: 15%;">{{ element.apellidopaterno }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="apellidomaterno">
+            <th mat-header-cell *matHeaderCellDef style="width: 20%;">Apellido Materno</th>
+            <td mat-cell *matCellDef="let element" style="width: 20%;">{{ element.apellidomaterno }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef style="width: 15;">Email</th>
+            <td mat-cell *matCellDef="let element" style="width: 15%;">{{ element.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="pass">
+            <th mat-header-cell *matHeaderCellDef style="width: 5%;">Contraseña</th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;">{{ element.pass }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="celular">
+            <th mat-header-cell *matHeaderCellDef style="width: 5%;">Celular</th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;">{{ element.celular }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nivel">
+            <th mat-header-cell *matHeaderCellDef style="width: 5%;">Nivel</th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;">{{ element.nivel }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaalta">
+            <th mat-header-cell *matHeaderCellDef style="width: 5%;">fechaalta</th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;">{{ element.fechaalta }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechabaja">
+            <th mat-header-cell *matHeaderCellDef style="width: 5%;">fechabaja</th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;">{{ element.fechabaja }}</td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+</div>

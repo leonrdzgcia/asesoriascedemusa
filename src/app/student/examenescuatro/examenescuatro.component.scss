@@ -1,0 +1,49 @@
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 45px 0;
+    align-items: flex-start;
+    font-size: large
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+  .scrollable-content {
+    max-height: 200px; /* Altura máxima del contenedor */
+    overflow-y: auto; /* Añade una barra de desplazamiento cuando sea necesario */
+    color: black;
+    font-size: large;
+    
+    
+  }
+
+  .label-content {
+    color: black;
+    font-size: large;
+  
+  }
+
+  .example-button-row {
+    display: ruby-text;
+    max-width: 300px;
+  }
+
+  .rojo {
+    color: red;
+  }
+
+  .custom-radio-button .mat-radio-label-content {
+    color: black; 
+    font-size: 16px; /* Cambia el tamaño según tus necesidades */
+    /* Cambia a cualquier color que necesites */
+  }
+  
+  
+  mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: white;
+}
+

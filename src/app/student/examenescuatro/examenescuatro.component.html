@@ -1,0 +1,70 @@
+<label id="example-radio-group-label" style="font-size: large; color: black;"> Examen de {{nombreExamen}} - id examen {{stringIidExamen}}  </label>
+<label *ngIf="minutesCad.length !=1"  id="example-radio-group-label" style="font-size: large; color: black;"> | Tiempo :   {{minutesCad}}:{{seconds}}</label>
+<label *ngIf="minutesCad.length ==1 " id="example-radio-group-label" style="font-size: large; color: black;"> | Tiempo :  0{{minutesCad}}:{{seconds}}</label>
+
+<mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+    [(ngModel)]="respuestaSeleccionada">
+    <!--label style="font-size: large; color: black;">{{ preguntas[banderaPreguntas].encabezado }}</label-->
+    <div class="scrollable-content" *ngIf="this.srcEncabezado != 'NA'">
+        <mat-card>
+            <mat-card-content  *ngFor="let linea of this.srcEncabezado.split('\n')">{{ linea }}</mat-card-content>
+            <!--div class="scrollable-content" [innerHTML]="salto"></div-->
+        </mat-card>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <label class="label-content">{{banderaPreguntas+1}} .-{{ preguntas[banderaPreguntas].pregunta }}</label>
+
+    <mat-divider></mat-divider>
+
+    <div *ngIf="preguntas[banderaPreguntas].preguntaImagen != 'NA'">
+        <img [src]="srcPreguntaImg" width="125%">
+    </div>
+
+    <!--div *ngIf="preguntas[banderaPreguntas].preguntaImagen != 'NA'"><img src={{srcPregunta}} width="100%"> </div-->
+    <!--mat-radio-button *ngFor="let season of seasons" [value]="season">{{ season }}</mat-radio-button-->
+
+    <div  *ngIf="preguntas[banderaPreguntas].tipoRespuestas == '1'">
+        <mat-radio-group>
+
+        <mat-radio-button class="custom-radio-button" value="preguntas[banderaPreguntas].respuesta_1">
+            {{ preguntas[banderaPreguntas].respuesta_1 }}
+        </mat-radio-button>
+        
+        <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_2">{{ preguntas[banderaPreguntas].respuesta_2 }} </mat-radio-button>
+        <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_3">{{ preguntas[banderaPreguntas].respuesta_3 }} </mat-radio-button>
+    </mat-radio-group>
+
+    </div>
+
+
+
+    <div *ngIf="preguntas[banderaPreguntas].tipoRespuestas == '2'">
+
+        <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_1"></mat-radio-button><img [src]="srcRes1">
+        <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_2"></mat-radio-button><img src="{{srcRes2}}">
+        <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_3"></mat-radio-button><img [src]="srcRes3">
+
+    </div>
+
+</mat-radio-group>
+
+<!--div style="font-size: large; color: black;">Opcion seleccionada : {{respuestaSeleccionada}}</div>
+<div style="font-size: large; color: black;">id pregunta : {{preguntas[banderaPreguntas].id}}</div-->
+
+
+<div class="example-button-row">
+    <button (click)="preguntaAnterior()" class="ancho button" mat-raised-button mat-button color="primary"
+        [disabled]="banderBack">ANTES
+    </button>
+    <button (click)="siguientePRegunta()" class="ancho button" mat-raised-button mat-button color="primary"
+        [disabled]="banderNext">SIGUIENTE
+    </button>
+
+    <!--button (click)="openMessageDialog()" class="ancho button" mat-raised-button mat-button color="primary"
+        [disabled]="banderNext">SIGUIENTE </button-->
+
+    <button (click)="enviarUltimaPregunta()" class="ancho button" mat-raised-button mat-button color="primary"
+        [disabled]="banderSend">ENVIAR
+    </button>

@@ -1,0 +1,102 @@
+<div class="container" style="width: 160%; max-width: 1550px;">
+    <mat-toolbar> <span>Preguntas</span> </mat-toolbar>
+
+
+    <form class="column-form" [formGroup]="formularioPreguntas" (ngSubmit)="submitForm()">
+        <mat-form-field>
+            <mat-label for="idPregunta">ID pregunta</mat-label>
+            <input matInput formControlName="idPregunta" (keypress)="soloNumeros($event)">
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="idExamen">ID Examen</mat-label>
+            <input matInput type="text" formControlName="idExamen" (keypress)="soloNumeros($event)">
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="pregunta">Pregunta</mat-label>
+            <input matInput type="text" formControlName="pregunta">
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="respuesta_1">Respuesta 1</mat-label>
+            <input matInput type="text" formControlName="respuesta_1">
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="respuesta_2">Respuesta 2</mat-label>
+            <input matInput type="text" formControlName="respuesta_2">
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="respuesta_3">Respuesta 3</mat-label>
+            <input matInput type="text" formControlName="respuesta_3">
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label for="correcta">Correcta</mat-label>
+            <input matInput type="text" formControlName="correcta" (keypress)="soloNumeros($event)">
+        </mat-form-field>
+        <!--button (click)="buscarporidExamen()" mat-raised-button color="primary">Buscar</button>
+        <button (click)="actualizar()" mat-raised-button color="primary">Actualizar</button>
+        <button (click)="eliminarPregunta()" mat-raised-button color="primary">Del</button>
+        <button (click)="agregarActualzar()" mat-raised-button color="primary">Add</button-->
+    </form>
+
+    <div class="example-button-row">
+        <button (click)="clickAgregarPregunta()" [disabled]="!formularioPreguntas.valid" mat-raised-button color="primary">Agregar Pregunta</button>
+        <button (click)="clickModiicarPregunta()" mat-raised-button color="primary">Modificar Pregunta</button>
+        <button (click)="buscarporidExamen()" mat-raised-button color="primary">Buscar</button>
+        <button (click)="clickActualizar()" mat-raised-button color="primary">Actualizar</button>
+        <button (click)="clickEliminarPregunta()" mat-raised-button color="primary">Eliminar pregunta</button>
+        <button (click)="clickEliminarTodasPreguntas()" mat-raised-button color="primary">Eliminar todas las pregunta</button>
+    </div>
+
+    <div>
+        
+      </div>
+      
+
+    <table mat-table [dataSource]="dataPreguntas" class="mat-elevation-z8">
+        
+        <ng-container matColumnDef="idPregunta">
+            <th mat-header-cell *matHeaderCellDef style="width: 5%;">ID</th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;">{{ element.idPregunta}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="idExamen">
+            <th mat-header-cell *matHeaderCellDef style="width: 5%;">Examen</th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;">{{ element.idExamen}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="pregunta">
+            <th mat-header-cell *matHeaderCellDef style="width: 25%;">Pregunta</th>
+            <td mat-cell *matCellDef="let element" style="width: 25%;">{{ element.pregunta }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="respuesta_1">
+            <th mat-header-cell *matHeaderCellDef style="width: 20%;">Respuesta #1</th>
+            <td mat-cell *matCellDef="let element" style="width: 20%;">{{ element.respuesta_1 }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="respuesta_2">
+            <th mat-header-cell *matHeaderCellDef style="width: 20%;">Respuesta #2</th>
+            <td mat-cell *matCellDef="let element" style="width: 20%;">{{ element.respuesta_2 }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="respuesta_3">
+            <th mat-header-cell *matHeaderCellDef style="width: 20%;">Respuesta #3</th>
+            <td mat-cell *matCellDef="let element" style="width: 20%;">{{ element.respuesta_3 }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="correcta">
+            <th mat-header-cell *matHeaderCellDef style="width: 5%;">correcta</th>
+            <td mat-cell *matCellDef="let element" style="width: 5%;">{{ element.correcta }}</td>
+        </ng-container>
+
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>   
+
+</div>

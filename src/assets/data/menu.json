@@ -1,0 +1,22 @@
+[
+    {
+        "nombre": "Examenes",
+        "redirect": "/dashboard"
+    },
+    {
+        "nombre": "Usuarios",
+        "redirect": "/dashboard/usuarios"
+    },
+    {
+        "nombre": "Preguntas",
+        "redirect": "/dashboard/preguntas"
+    },
+    {
+        "nombre": "Asignaciones",
+        "redirect": "/dashboard/asignaciones"
+    },
+    {
+        "nombre": "Reportes",
+        "redirect": "/dashboard/reportes"
+    }
+]

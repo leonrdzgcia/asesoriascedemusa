@@ -1,0 +1,49 @@
+<div>
+    <h2 mat-dialog-title>{{ data.encabezado }}</h2>
+    <mat-dialog-content>
+        <p style="text-align: center;">{{ data.message }}</p>
+        <p style="text-align: center;">{{ data.message1 }}</p>
+        <p style="text-align: center;">{{ data.message2 }}</p>
+
+        <div *ngFor="let ele of data.message3">
+
+            <div *ngIf="ele.tipoRespuesta == '1'">
+                <p>{{ ele.idPregunta }} - {{ ele.pregunta }}</p>
+
+                <div *ngIf="ele.correcta == true">
+                    <!--p>Respuesta correcta :<mat-icon clas="verde">close</mat-icon-->
+                    <p>Respuesta correcta : <mat-icon style="color: green;">done</mat-icon> {{ ele.respuestaCorrecta }}
+                    </p>
+                </div>
+                <div *ngIf="ele.correcta == false">
+                    <!--p>Respuesta correcta :<mat-icon clas="verde">close</mat-icon-->
+                    <p>Respuesta Incorrecta : <mat-icon style="color: red;">close</mat-icon> {{ ele.respuestaIncorrecta}}</p>
+                    <p>Respuesta Correcta : <mat-icon style="color:green;">done</mat-icon> {{ ele.respuestaCorrecta }}</p>
+                </div>                
+            </div>
+
+            <div *ngIf="ele.tipoRespuesta == '2'">                
+                <p>{{ ele.idPregunta }} - {{ ele.pregunta }}</p>
+
+                <div *ngIf="ele.correcta == true">
+                    <p>Respuesta correcta : <mat-icon style="color: green;">done</mat-icon></p>
+                    <img [src]="ele.respuestaCorrecta" width="auto">
+                </div>
+                <div *ngIf="ele.correcta == false">
+                    <p>Respuesta incorrecta : <mat-icon style="color: red;">close</mat-icon>
+                    <img [src]="ele.respuestaIncorrecta" width="auto">
+                </p>
+
+                    <p>Respuesta correcta :  <mat-icon style="color:green;">done</mat-icon>
+                        <img [src]="ele.respuestaCorrecta" width="auto">
+                    </p>
+                </div>
+            
+            </div>
+        </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions class="example-button-row">
+        <button mat-button mat-dialog-close mat-raised-button mat-button color="primary">Cerrar</button>
+    </mat-dialog-actions>
+</div>

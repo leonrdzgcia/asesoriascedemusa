@@ -26,26 +26,21 @@
     <!--mat-radio-button *ngFor="let season of seasons" [value]="season">{{ season }}</mat-radio-button-->
 
     <div  *ngIf="preguntas[banderaPreguntas].tipoRespuestas == '1'">
-        <mat-radio-group>
+        <mat-radio-group [(ngModel)]="respuestaSeleccionada">
 
-        <mat-radio-button class="custom-radio-button" value="preguntas[banderaPreguntas].respuesta_1">
-            {{ preguntas[banderaPreguntas].respuesta_1 }}
-        </mat-radio-button>
-        
+        <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_1">{{ preguntas[banderaPreguntas].respuesta_1 }}        </mat-radio-button>        
         <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_2">{{ preguntas[banderaPreguntas].respuesta_2 }} </mat-radio-button>
         <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_3">{{ preguntas[banderaPreguntas].respuesta_3 }} </mat-radio-button>
     </mat-radio-group>
 
     </div>
 
-
-
     <div *ngIf="preguntas[banderaPreguntas].tipoRespuestas == '2'">
-
+        <mat-radio-group [(ngModel)]="respuestaSeleccionada">
         <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_1"></mat-radio-button><img [src]="srcRes1">
         <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_2"></mat-radio-button><img src="{{srcRes2}}">
         <mat-radio-button [value]="preguntas[banderaPreguntas].respuesta_3"></mat-radio-button><img [src]="srcRes3">
-
+    </mat-radio-group>
     </div>
 
 </mat-radio-group>

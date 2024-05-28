@@ -245,9 +245,9 @@ export class PreguntasComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('User confirmed');
+        console.log('Opcion aceptar');
       } else {
-        console.log('User canceled');
+        console.log('Opcion cancelar');
       }
     });
 

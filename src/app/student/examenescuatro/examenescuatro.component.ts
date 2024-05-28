@@ -146,7 +146,7 @@ export class ExamenescuatroComponent implements OnInit {
       console.log(this.dataService.tiempoExamen);
       //this.arrayPreguntasFinal = this.arrayPreguntasFinal + this.preguntas[0].pregunta + '\n';
       console.log(this.arrayPreguntasFinal);
-      console.log(this.preguntas[0].pregunta);
+      //console.log(this.preguntas[0].pregunta);
       //this.arrayPreguntasFinal.push(this.preguntas[0].pregunta);
       //this.arrayPreguntasFinal = this.arrayPreguntasFinal + this.preguntas[0].pregunta + '\n';
       this.openDialogAndWaitForResponse();
@@ -242,10 +242,14 @@ export class ExamenescuatroComponent implements OnInit {
     this.listaRespuestas.push(this.preguntas[this.banderaPreguntas].respuesta_1);
     this.listaRespuestas.push(this.preguntas[this.banderaPreguntas].respuesta_2);
     this.listaRespuestas.push(this.preguntas[this.banderaPreguntas].respuesta_3);
-    console.log(this.listaRespuestas);
+    //console.log(this.listaRespuestas);
     console.log(this.listaRespuestas[0]);//console.log(this.listaRespuestas[1]);console.log(this.listaRespuestas[2]);
-    console.log(this.listaRespuestas[Number(this.preguntas[this.banderaPreguntas].correcta) - 1]);
+    //console.log(this.listaRespuestas[Number(this.preguntas[this.banderaPreguntas].correcta) - 1]);
+    console.log('-----');
     console.log(this.respuestaSeleccionada);
+    console.log(this.listaRespuestas[Number(this.preguntas[this.banderaPreguntas].correcta) - 1]);
+    console.log('-----');
+
     //    this.arrayPreguntasFinal.push(this.preguntas[0].pregunta);
 
     if (this.respuestaSeleccionada == this.listaRespuestas[Number(this.preguntas[this.banderaPreguntas].correcta) - 1]) {
@@ -445,7 +449,7 @@ export class ExamenescuatroComponent implements OnInit {
     this.api.guardarResultado(this.formularioGuardarResultado.value).subscribe(
       (response) => {
         console.log('Data added successfully:', response);
-        this.ventana('EXAMEN ASIGNADO EXITOSAMENTE', 'OK');
+        this.ventana('EXAMEN FINALIZADO EXITOSAMENTE', 'OK');
 
 
         //this.llenadoListaUsuarios();
@@ -478,8 +482,8 @@ export class ExamenescuatroComponent implements OnInit {
   async openDialogAndWaitForResponse(): Promise<void> {
     const respuesta = await this.dialogService.openDialogAndGetResponse();
     console.log('Respuesta del usuario:', respuesta);
-    console.log(this.dataService.tiempoExamen);
-    console.log(this.dataService.tiempoExamen);
+    /*console.log(this.dataService.tiempoExamen);
+    console.log(this.dataService.tiempoExamen);*/
     if (this.dataService.tiempoExamen == 1) {
       console.log('tiempoExamen == 1 ');
       this.startTimer();
@@ -510,9 +514,9 @@ export class ExamenescuatroComponent implements OnInit {
     console.log('---  startTimer 4', this.tiempoTotal);
     this.interval = setInterval(() => {
       if (this.tiempoTotal === 0) {
-        console.log(this.tiempoTotal);
+        //console.log(this.tiempoTotal);
       } else {
-        console.log(this.tiempoTotal);
+        //console.log(this.tiempoTotal);
         this.tiempoTotal--;
         if (this.tiempoTotal == 0) {
           this.fakeLoading();
@@ -525,9 +529,9 @@ export class ExamenescuatroComponent implements OnInit {
   transform(value: number): string {
     const minutes: number = Math.floor(value / 60);
     this.minutesCad = this.minutes.toString();
-    console.log(this.minutes);
+    /*console.log(this.minutes);
     console.log(this.minutesCad);
-    console.log(this.minutesCad.length);
+    console.log(this.minutesCad.length);*/
     //console.log(this.minutes);
     return minutes + ':' + (value - minutes * 60);
   }
@@ -551,7 +555,7 @@ export class ExamenescuatroComponent implements OnInit {
     if (this.seconds === 60) {
       this.seconds = 0;
       this.minutes++;
-      console.log(this.minutes);
+      //console.log(this.minutes);
     }
   }
 

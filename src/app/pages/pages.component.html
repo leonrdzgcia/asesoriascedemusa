@@ -20,6 +20,12 @@
             <!-- ----  DIVISION DIVIDER ---------->
             <mat-divider *ngIf="bandera==1"></mat-divider>
 
+            <button mat-button *ngIf="bandera==1" class="menu-button" (click)="botonActualizar()"><mat-icon>home</mat-icon>
+                <span><a>Actualizar</a></span>
+            </button>
+
+            <mat-divider *ngIf="bandera==1"></mat-divider>
+
             <!--button mat-button *ngIf="bandera==1" class="menu-button">
                     <mat-icon>person</mat-icon>
                     <span><a [routerLink]="['student/studentCreate']">Crear</a></span>

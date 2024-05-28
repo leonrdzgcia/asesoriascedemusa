@@ -1,16 +1,13 @@
-<h2 mat-dialog-title>¿ Realizar el examen con tiempo  ?</h2>
+<h1 mat-dialog-title>Iniciar Examen</h1>
 
-<mat-dialog-content>
-  <ul>
+<div mat-dialog-content>
+  <p>Iniciar el examen con tiempo ?</p>
+</div>
+<div mat-dialog-actions>
     <!--i *ngFor="let option of options">{{ option }}</li-->
-    <button mat-button mat-dialog-close (click)="contiempo()">SI</button>
-    <button mat-button mat-dialog-close (click)="sintiempo()">No</button>
-    
+    <button mat-button (click)="sintiempo()">No</button>
+    <button mat-button (click)="contiempo()" mat-raised-button mat-button color="primary">SI</button>
+  </div>
 
-  </ul>
-</mat-dialog-content>
-
-<mat-dialog-actions>
     <!--button mat-button [mat-dialog-close]="true">Cerrar</button-->
 
-</mat-dialog-actions>

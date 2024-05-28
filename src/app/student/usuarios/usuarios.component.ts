@@ -70,6 +70,7 @@ export class UsuariosComponent {
     console.log('--ngOnInit USUARIOS ');
     console.log(this.dataService.nombre);
     console.log(this.dataService.perfil);
+    console.log(this.dataService.matricula);
     //console.log(this.dataService.apellidopaterno);
     this.llenadoListaUsuarios();
   }
@@ -89,13 +90,13 @@ export class UsuariosComponent {
       }
       this.contrasenaGenerada = contrasena;//console.log(this.formularioUsuarios.value);
       this.generarPassUpd(this.contrasenaGenerada);
-      this.ventana('NueVa contrasena :' + this.contrasenaGenerada, 'OK');
+      //this.ventana('NueVa contrasena :' + this.contrasenaGenerada, 'OK');
     }
   }
 
 
   generarPassUpd(pass: string) {
-    this.api.getUsuarioMatricula(Number(this.formularioUsuarios.value.idUsuario)).subscribe(
+    this.api.getUsuarioID(Number(this.formularioUsuarios.value.idUsuario)).subscribe(
       (data) => {
         console.log(data);
         console.log(this.formularioUsuarios.value);
@@ -116,6 +117,7 @@ export class UsuariosComponent {
         this.formularioUsuarios.value.fechaalta = data.fechaalta;
         this.formularioUsuarios.value.fechabaja = data.fechabaja;
         console.log(this.formularioUsuarios.value);
+        //this.ventana('NueVa contrasena :' + this.contrasenaGenerada, 'OK');
         this.agregarUsuario();
       },
       (error) => {

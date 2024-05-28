@@ -89,10 +89,15 @@ export class PagesComponent {
     console.log(' -- ngOnInit PagesComponent ');
     /*console.log(this.matriculaLogin);
     console.log(this.nombreLogin);*/
+    console.log(this.dataSource);
+    console.log(this.arrayExamenes);
+    console.log(this.arrayExamenesInt);
+    this.arrayExamenesInt = [];
     console.log(this.dataService);
     console.log(this.dataService.banderaUsuario);
     console.log(this.dataService.matricula);
     this.matriculaLogin = this.dataService.matricula;
+
     this.nombreLogin = this.dataService.nombre;
     //console.log(this.matriculaLogin);console.log(this.nombreLogin);
     this.obtenerasignaciones();
@@ -106,6 +111,11 @@ export class PagesComponent {
     this.bandera = this.dataService.banderaUsuario;
     console.log(this.bandera);
     
+  }
+
+  botonActualizar(){
+    console.log("---botonActualizar");
+    this.ngOnInit();
 
   }
 
@@ -179,6 +189,8 @@ export class PagesComponent {
   }
 
   obtenerasignacionesporMatreicula() {
+    console.log(this.arrayExamenesInt);    
+      
     this.api.getAsignacionesMatricula(this.dataService.matricula).subscribe(
       (data) => {
         this.arrayExamenes = data;

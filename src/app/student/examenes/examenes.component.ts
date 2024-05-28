@@ -28,7 +28,7 @@ export class ExamenesComponent {
   fechaActual: Date | undefined;
   nivelSeleccionado: string = '';
   displayedColumns: string[] = ['idExamen', 'tipo', 'nombreExamen', 'idMateria', 'nivel', 'tiempo', 'preguntas90'];
-  opciones: string[] = ['Preparatoria', 'Facultad'];
+  opciones: string[] = ['Preparatoria', 'Facultad', 'Secundaria'];
   banderaNoventaPreguntas: boolean = false; //true : 7000pts / false 100%
   dataPregunta: Pregunta = {
     //idPregunta:0,

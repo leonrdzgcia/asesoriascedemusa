@@ -1,6 +1,8 @@
 table {
     width: 100%;
-    margin-top: 100px;
+    margin-top: 18px;
+    overflow: auto;
+
   }
   
   th {
@@ -25,7 +27,15 @@ table {
     max-width: 500px;
     width: 100%;
   }
+
+  .table-container {
+    max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+    overflow: auto;
+  }
   
+  .mat-table {
+    width: 100%;
+  }
   .example-full-width {
     width: 100%;
   }

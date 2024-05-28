@@ -47,6 +47,11 @@
         <button (click)="buscarAsignacion()" mat-raised-button color="primary">Buscar asignacion</button>
     </div>
 
+
+    <div class="mat-elevation-z8">
+
+    <div class="table-container">
+
     <table mat-table [dataSource]="dataAsignaciones" class="mat-elevation-z8">
         <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
             <th mat-header-cell *matHeaderCellDef>{{ column | titlecase }}</th>
@@ -55,5 +60,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+</div>
+</div>
 
 </div>

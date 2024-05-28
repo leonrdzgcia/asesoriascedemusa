@@ -81,18 +81,21 @@ export class AsignacionesComponent {
 
   ngOnInit(): void {
     console.log('-- ngOnInit ASIGNACIONES');
-    if (this.dataService.matricula == 0) {
+    /*if (this.dataService.matricula == 0) {
       this.ventana('Favor de ingresar al portal nuevamente', 'OK');
       this.logout();
-    } else {
+    } else {*/
       console.log('-- MATRICULA OK - ' + this.dataService.matricula);
       console.log(this.dataService);
       console.log(this.dataService.perfil);
       //this.llenadoListaExamenes();
       this.obtenerUsuariosMatriculas();
+      
       this.obtenerasignaciones();
       this.obtenerExamenes();
-    }
+      this.obtenerExamenesPornivel();
+    
+    //}
   }
 
   selectExamen() {
@@ -111,6 +114,25 @@ export class AsignacionesComponent {
 
         console.log(data);
         console.log(data.length);
+        for (let index = 0; index < data.length; index++) {
+          console.log(data[index].idMateria);
+          this.arrayExamenes.push(data[index].idExamen + ' - ' + data[index].idMateria);
+          this.arrayExamenesInt.push({ idExamen: data[index].idExamen, nombreExamen: data[index].nombreExamen });
+        }
+      },
+      (error) => {
+        console.error('Error fetching data list:', error);
+      }
+    );
+  }
+
+  obtenerExamenesPornivel() {
+    this.api.getExamensNivel('Preparatoria').subscribe(
+      (data) => {
+        //this.arrayExamenes = data;
+        console.log(data);
+        console.log(data.length);
+        
         for (let index = 0; index < data.length; index++) {
           console.log(data[index].idMateria);
           this.arrayExamenes.push(data[index].idExamen + ' - ' + data[index].idMateria);

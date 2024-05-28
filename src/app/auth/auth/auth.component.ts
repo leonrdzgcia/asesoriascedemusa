@@ -20,8 +20,12 @@ export class AuthComponent implements OnInit {
   dataSource: any[] = [];
   valdue!: string | null;
   opciones: string[] = [];
-  opcionesD: string[][] = [ ["matricula", "nombre", "pass"], ];
+  opcionesD: string[][] = [["matricula", "nombre", "pass", "nivel"],];
+  dataUsuario: Usuario[] = [];
   banderaUsuario = false;
+
+  usuarioAdminDB = '';
+  usuarioPassDB = '';
 
   constructor(
     private fb: FormBuilder,
@@ -36,7 +40,7 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.dataService);    
+    console.log(this.dataService);
     console.log('-- ngOnInit LOGIN');
     this.cambiarVariableGlobal();
     this.obtenerUsuarios();
@@ -44,42 +48,68 @@ export class AuthComponent implements OnInit {
     console.log('-- ngOnInit LOGIN');
   }
 
+  datosUsuario() {
+    /*console.log(this.formLogin.value.usuario);
+    console.log(this.formLogin.value.pass);
+    console.log(this.dataService);*/
+
+    this.api.getUsuarioMatricula(this.formLogin.value.usuario).subscribe(
+      (data) => {
+        console.log(data);
+        this.dataUsuario = data;
+        /*console.log(this.dataUsuario[0].matricula);
+        console.log(this.dataUsuario[0].pass);*/
+        this.usuarioAdminDB = this.dataUsuario[0].matricula;
+        this.usuarioPassDB = this.dataUsuario[0].pass;
+        /*console.log(this.usuarioAdminDB);
+        console.log(this.usuarioPassDB);*/
+        //this.dataSource2 = data;            
+      },
+      (error) => {
+        console.error('Error fetching data list:', error);
+      }
+    );
+
+    this.clickLogin();
+  }
+
   clickLogin() {
-    this.obtenerUsuarios();
-
-    console.log(this.dataSource);
-    console.log(this.opcionesD);
-
-
-    for (let i = 0; i <= this.dataSource.length; i++) {
-      console.log(this.dataSource[i]);
-
-      //console.log(element);
-
-    }
-
-    console.log(this.opciones);
-    console.log(this.opcionesD);
+    //this.datosUsuario();
+    //this.obtenerUsuarios();
+    //console.log(this.dataSource);
+    //console.log(this.opcionesD);
+    //console.log(this.opciones);//console.log(this.opcionesD);
     /*console.log(this.opcionesD[0][0]);    console.log(this.opcionesD[0][1]);console.log(this.opcionesD[1][0]);    console.log(this.opcionesD[1][1]);*/
+    /*console.log(this.dataUsuario);
+    console.log(this.dataUsuario[0].matricula);
+    console.log(this.dataUsuario[0].pass);*/
     const user = this.formLogin.value.usuario;
     const pass = this.formLogin.value.pass;
-    console.log(this.formLogin.value.usuario);
+    /*console.log(this.formLogin.value.usuario);
     console.log(user);
     console.log(pass);
-    if (this.formLogin.value.usuario == 'admin') { 
+    console.log(this.usuarioAdminDB);
+    console.log(this.usuarioPassDB);*/
 
-      this.dataService.banderaUsuario = 1; // 1 - admin
-      this.dataService.perfil = 'admin';
-      this.dataService.nombre = 'Jonathan Sanchez';
-      this.dataService.matricula = 'CEF00001';
-      this.dataService.banderaUsuario = 1;
-      console.log('-- ES ADMIN , bandera BANDERA ES '+this.dataService.banderaUsuario );
-      this.loading = true;
-      setTimeout(() => {
-        this.router.navigate(['dashboard']);//this.loading = false;
-      }, 1500);
-    }
-    else {
+    if (this.formLogin.value.usuario == 'admin') {
+      console.log('-- ES ADMIN   ');
+      if (this.formLogin.value.usuario == this.usuarioAdminDB && this.formLogin.value.pass == this.usuarioPassDB) {
+        console.log('-- ADMIN okey  ');
+        this.dataService.banderaUsuario = 1; // 1 - admin
+        this.dataService.perfil = 'admin';
+        this.dataService.nombre = 'Jonathan Sanchez';
+        this.dataService.matricula = 'CEF00001';
+        this.dataService.matricula = 'admin';
+        this.dataService.banderaUsuario = 1;
+        console.log('-- ES ADMIN , bandera BANDERA ES ' + this.dataService.banderaUsuario);
+        this.loading = true;
+        setTimeout(() => {
+          this.router.navigate(['dashboard']);//this.loading = false;
+        }, 1500);
+      } else {
+        this.ventana('Contraseña incorrecta ', 'Admin');
+      }
+    } else {
       console.log('-- ES USUARIO');
       console.log(this.opcionesD);
       for (let index = 0; index < this.opcionesD.length; index++) {
@@ -89,15 +119,15 @@ export class AuthComponent implements OnInit {
           console.log(this.formLogin.value.usuario);
           console.log(this.opcionesD[index][0]);
           console.log(this.opcionesD[index][1]);
+          console.log(this.opcionesD[index][2]);
+          console.log(this.opcionesD[index][3]);
           this.banderaUsuario = true;
           this.dataService.banderaUsuario = 2; //2 - usuario
           this.dataService.perfil = 'user';
           this.dataService.matricula = this.opcionesD[index][0];
-          this.dataService.nombre = this.opcionesD[index][1];
+          this.dataService.nombre = this.opcionesD[index][1];//this.dataService.nivel = this.opcionesD[index][3];
         }
-
       }
-
       /*for (let index = 0; index < this.opciones.length; index++) {
         if (this.formLogin.value.usuario == this.opciones[index].toString()) {        
           this.banderaUsuario= true;
@@ -105,16 +135,22 @@ export class AuthComponent implements OnInit {
           this.dataService.perfil = 'user';
           this.dataService.matricula = 'user';
           this.dataService.nombre = 'user';
-        }        
-      }*/
+        }}*/
 
       if (this.banderaUsuario) {
-        console.log(this.dataService.banderaUsuario);
-        console.log('ENTRO BANDERA');
-        this.loading = true;
-        setTimeout(() => {
-          this.router.navigate(['dashboard']);//this.loading = false;
-        }, 1500);
+        if (this.formLogin.value.usuario == this.usuarioAdminDB && this.formLogin.value.pass == this.usuarioPassDB) {
+          console.log(this.dataService.banderaUsuario);
+          console.log('--- USUARIO PASS USER CORRECTO');
+          this.loading = true;
+          setTimeout(() => {
+            this.router.navigate(['dashboard']);//this.loading = false;
+          }, 1500);
+
+        }else{
+          this.ventana('Contraseña incorrecta ', 'User');
+
+        }
+
       } else {
         this.ventana('La matricula no existe', 'ERROR');
       }
@@ -127,21 +163,20 @@ export class AuthComponent implements OnInit {
     this.api.getUsuarios().subscribe(
       (data) => {
         //this.dataSource = data;
-
         //this.opciones = data;
-        console.log(data);
+        //console.log(data);
         console.log(data.length);
         for (let index = 0; index < data.length; index++) {
-          console.log(data[index].matricula);
+          //console.log(data[index].matricula);
           this.opciones.push(data[index].matricula);
           this.opcionesD.push(
             [
-              data[index].matricula, data[index].nombre + ' ' + data[index].apellidopaterno, data[index].pass
+              data[index].matricula, data[index].nombre + ' ' + data[index].apellidopaterno,
+              data[index].pass, data[index].nivel
             ]
           );
         }
-        console.log(this.opcionesD);
-
+        //console.log(this.opcionesD);
       },
       (error) => {
         console.error('Error fetching data list:', error);
@@ -154,10 +189,9 @@ export class AuthComponent implements OnInit {
       (data) => {
         this.dataSource = data;
         console.log(data);
-        for (let i = 0; i <= data.length; i++) {
-          const element = data[i].matricula;
-          
-        }
+        /*for (let i = 0; i <= data.length; i++) {
+          const element = data[i].matricula;          
+        }*/
       },
       (error) => {
         console.error('Error fetching data list:', error);

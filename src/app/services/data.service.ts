@@ -19,6 +19,7 @@ export class DataService {
   public email: any;
   public pass: any;
   public celular: any;
+  public nivel: any;
   public fechaAlta: any;
   public fechaBaja: any;
   public examenasignado: any;
@@ -40,6 +41,7 @@ export class DataService {
     this.pass= '';
     this.email = ''; 
     this.celular = ''; 
+    this.nivel = 'Facultad'; 
     this.fechaAlta = ''; 
     this.fechaBaja = '';
     this.examenasignado = 26;  

@@ -16,7 +16,7 @@ export class ExamenService {
 
   constructor( private http: HttpClient ) { }
 
-  //API ASIGNACIONES
+  // --------------------------------------------API ASIGNACIONES
   getAsignaciones(): Observable<any> {
     //return this.http.get<Menu[]>('./assets/data/menu.json');
     return this.http.get(`${this.apiUrl}/asignaciones`);
@@ -33,14 +33,14 @@ export class ExamenService {
     return this.http.post<any>(`${this.apiUrl}/asignaciones`, newData);
   }
 
-  //API USUARIOS
+  // --------------------------------------------API USUARIOS
   getUsuarios(): Observable<any> {
     //return this.http.get<Menu[]>('./assets/data/menu.json');
     //return this.http.get(`${this.apiUrl}/usuario`);
     return this.http.get(`${this.apiUrl}/usuarios`);
   }
-  getUsuarioMatricula(matricula: Number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/usuarios/${matricula}`);
+  getUsuarioMatricula(matricula: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/usuarios/matricula?matricula=${matricula}`);
   }
 
   getUsuarioID(id: Number): Observable<any> {
@@ -57,10 +57,17 @@ export class ExamenService {
     const url = `${this.apiUrl}/usuarios/${id}`;
     return this.http.delete(url);
   }
-  //API EXAMENES
+
+  // --------------------------------------------API EXAMENES
   getExamens(): Observable<any> {
     //return this.http.get<Menu[]>('./assets/data/menu.json'); console.log(this.apiUrl);
     return this.http.get<any>(`${this.apiUrl}/examen`);
+  }
+
+  getExamensNivel(nivel: string): Observable<any> {
+    //return this.http.get<Menu[]>('./assets/data/menu.json'); console.log(this.apiUrl);
+    console.log(nivel);
+    return this.http.get<any>(`${this.apiUrl}/examen/nivel?nivel=${nivel}`);
   }
 
   getExamenIdExamen(idExamen: Number): Observable<any> {

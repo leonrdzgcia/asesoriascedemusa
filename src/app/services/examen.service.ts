@@ -16,6 +16,12 @@ export class ExamenService {
 
   constructor( private http: HttpClient ) { }
 
+  // --------------------------------------------API ftp
+  //cargarArchivos(formData : FormData): Observable<any>{
+    //return this.http.post<FormData>(`${this.apiUrl}/upload`, formData);
+    //return this.http.post<FormData>(`${this.apiUrl}/upload`, formData);
+  //}
+
   // --------------------------------------------API ASIGNACIONES
   getAsignaciones(): Observable<any> {
     //return this.http.get<Menu[]>('./assets/data/menu.json');

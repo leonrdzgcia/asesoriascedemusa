@@ -42,3 +42,9 @@ table {
     display: grid;
     grid-template-columns: 1fr; /* Un solo columna por defecto */
   }
+
+  .table-container {
+    max-height: 650px; /* Ajusta la altura máxima según tus necesidades */
+    overflow: scroll;
+  }
+  

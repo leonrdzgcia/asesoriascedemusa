@@ -29,8 +29,8 @@ table {
   }
 
   .table-container {
-    max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
-    overflow: auto;
+    max-height: 650px; /* Ajusta la altura máxima según tus necesidades */
+    overflow: scroll;
   }
   
   .mat-table {

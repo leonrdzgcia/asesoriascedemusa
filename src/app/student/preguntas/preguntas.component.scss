@@ -32,8 +32,13 @@ table {
     align-items: flex-start; /* Otra opción: align-items: center; para centrar verticalmente */
   }
 
-
   .example-button-row {
         display: flex;
       justify-content: space-evenly;    
   }
+
+  .table-container {
+    max-height: 650px; /* Ajusta la altura máxima según tus necesidades */
+    overflow: scroll;
+  }
+  

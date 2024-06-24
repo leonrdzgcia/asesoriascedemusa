@@ -51,6 +51,10 @@
                 <span><a [routerLink]="['student/preguntas']">Preguntas</a></span>
             </button>
 
+            <button mat-button *ngIf="bandera==1" class="menu-button"><mat-icon>dataset</mat-icon>
+                <span><a [routerLink]="['student/archivos']">Archivos</a></span>
+            </button>
+
             <!-- ----  DIVISION DIVIDER  examenes y videos ADMIN---------->
             <mat-divider *ngIf="bandera==1"></mat-divider>
 
